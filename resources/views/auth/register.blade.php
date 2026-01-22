@@ -10,16 +10,16 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon" />
     <!-- [Font] Family -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <!-- [phosphor Icons] https://phosphoricons.com/ -->
-    <link rel="stylesheet" href="../assets/fonts/phosphor/regular/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets/fonts/phosphor/regular/style.css') }}" />
     <!-- [Tabler Icons] https://tablericons.com -->
-    <link rel="stylesheet" href="../assets/fonts/tabler-icons.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}" />
     <!-- [Template CSS Files] -->
-    <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link" />
-    <link rel="stylesheet" href="../assets/css/style-preset.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style-preset.css') }}" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-14K1GBX9FG"></script>
     <script>
@@ -958,19 +958,11 @@
     </style>
 </head>
 
-<body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="light">
-    <!-- [ Pre-loader ] start -->
-    <div class="loader-bg">
-        <div class="loader-track">
-            <div class="loader-fill"></div>
-        </div>
-    </div>
-    <!-- [ Pre-loader ] End -->
-
+<body @@bodySetup>
     <div class="auth-main">
         <div class="auth-wrapper v1">
             <div class="auth-form">
-                <div class="position-relative my-5">
+                <div class="position-relative">
                     <div class="auth-bg">
                         <span class="r"></span>
                         <span class="r s"></span>
@@ -978,53 +970,72 @@
                         <span class="r"></span>
                     </div>
                     <div class="card mb-0">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <a href="#"><img src="../assets/images/logo-dark.svg" alt="img" /></a>
-                            </div>
-                            <h4 class="text-center f-w-500 mt-4 mb-3">Sign up</h4>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-3">
-                                        <input type="text" class="form-control" placeholder="First Name" />
+                        <form class="form" action="{{ route('register') }}" method="POST">
+                            @csrf
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <a href="#"><img src="../assets/images/logo-dark.svg" alt="img" /></a>
+                                </div>
+                                <h4 class="text-center f-w-500 mt-4 mb-3">Sign up</h4>
+                                <div class="mb-3">
+                                    <input type="text" name="name" class="form-control"
+                                        value="{{ old('name') }}" placeholder="Name" />
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+
+                                    <input type="email" name="email" class="form-control"
+                                        value="{{ old('email') }}" placeholder="Email Address" />
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+
+                                    <input type="password" name="password" class="form-control"
+                                        placeholder="Password" />
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" name="password_confirmation" class="form-control"
+                                        placeholder="Confirm Password" />
+                                    @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="d-flex mt-1 justify-content-between">
+                                    <div class="form-check">
+                                        <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
+                                        <label class="form-check-label text-muted" for="customCheckc1">I agree to all the Terms & Condition</label>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group mb-3">
-                                        <input type="text" class="form-control" placeholder="Last Name" />
-                                    </div>
+                                <div class="text-center mt-4">
+                                    <button type="submit" class="btn btn-primary shadow px-sm-4">Sign up</button>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-end mt-4">
+                                    <h6 class="f-w-500 mb-0">Already have an Account?</h6>
+                                    <a href="#" class="link-primary">Login</a>
                                 </div>
                             </div>
-                            <div class="form-group mb-3">
-                                <input type="email" class="form-control" placeholder="Email Address" />
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="password" class="form-control" placeholder="Password" />
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="password" class="form-control" placeholder="Confirm Password" />
-                            </div>
-                            <div class="d-flex mt-1 justify-content-between">
-                                <div class="form-check">
-                                    <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
-                                    <label class="form-check-label text-muted" for="customCheckc1">I agree to all the Terms & Condition</label>
-                                </div>
-                            </div>
-                            <div class="text-center mt-4">
-                                <button type="button" class="btn btn-primary shadow px-sm-4">Sign up</button>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-end mt-4">
-                                <h6 class="f-w-500 mb-0">Already have an Account?</h6>
-                                <a href="/dashboard" class="link-primary">Login</a>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- [ Main Content ] end -->
-    <!-- Required Js -->
     <script src="../assets/js/plugins/popper.min.js"></script>
     <script src="../assets/js/plugins/simplebar.min.js"></script>
     <script src="../assets/js/plugins/bootstrap.min.js"></script>
@@ -1056,8 +1067,6 @@
     <script>
         layout_theme_sidebar_change('false');
     </script>
-
-
 </body>
 
 </html>
