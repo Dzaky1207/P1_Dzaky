@@ -7,11 +7,11 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Tabel Kategori Pesan</h4>
+                <h4 class="card-title">Tabel Tujuan</h4>
 
                 <div class="d-flex justify-content-end mb-3">
-                    <a href="{{ route('kelompok.create') }}" class="btn btn-primary">
-                        Tambah Kelompok
+                    <a href="{{ route('tujuan.create') }}" class="btn btn-primary">
+                        Tambah Tujuan
                     </a>
                 </div>
 
@@ -20,25 +20,28 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Kategori Pesan</th>
-                                <th>Aksi</th>
+                                <th>Nama Tujuan</th>
+                                <th>Created At</th>
+                                <th>Updated At</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-
                         <tbody>
-                            @forelse ($kelompok as $index => $item)
+                            @forelse ($tujuan as $index => $item)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->jenis_kelompok }}</td>
+                                <td>{{ $item->tujuan }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <div class="d-flex gap-2 flex-wrap">
                                         <!-- Edit -->
-                                        <a href="{{ url('kelompok/create?id=' . $item->id) }}"
+                                        <a href="{{ url('tujuan/create?id=' . $item->id) }}"
                                             class="btn btn-warning btn-sm text-white">Edit</a>
 
                                         <!-- Delete -->
-                                        <form action="{{ route('kelompok.destroy', $item->id) }}" method="POST"
-                                            onsubmit="return confirm('Yakin ingin menghapus kelompok ini?')">
+                                        <form action="{{ route('tujuan.destroy', $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus tujuan ini?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
@@ -53,6 +56,7 @@
                             @endforelse
 
                         </tbody>
+
                     </table>
                 </div>
 

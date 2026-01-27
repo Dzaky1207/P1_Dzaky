@@ -11,18 +11,17 @@
 
                 <div class="d-flex justify-content-end mb-3">
                     <a href="{{ route('jenis.create') }}" class="btn btn-primary">
-                        Create
+                        Tambah Pesan
                     </a>
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Kategori Pesan</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
 
@@ -31,8 +30,6 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $item->jenis_pesan }}</td>
-                                <td>{{ $item->created_at }}</td>
-                                <td>{{ $item->updated_at }}</td>
                                 <td>
                                      <div class="d-flex gap-2 flex-wrap">
                                 <!-- Edit -->
